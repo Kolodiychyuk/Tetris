@@ -76,10 +76,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 	    case WM_TIMER:
 		if (eat.bottom + 8 <= brick.top + 2) {
 		    eat.top += 8;
-		eat.bottom += 8;
-		paintType = eatPaint;
-		eat_rect = { eat.left, eat.top - 8, eat.right, eat.bottom };
-		InvalidateRect(hWnd, &eat_rect, TRUE);
+		    eat.bottom += 8;
+		    paintType = eatPaint;
+		    eat_rect = { eat.left, eat.top - 8, eat.right, eat.bottom };
+		    InvalidateRect(hWnd, &eat_rect, TRUE);
 		} else {
 		    eat.left = rand() % (width - 50);
 		    eat.right = eat.left + 30;
@@ -103,28 +103,28 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 		    InvalidateRect(hWnd, &brick_rect, TRUE);
 		}
 		break;
-	     case WM_PAINT:
-	         hdc = BeginPaint(hWnd, &ps);
-		 switch (paintType) {
-		     case eatPaint:
-		         SelectObject(hdc, hBrush_red);
-		         RoundRect(hdc, eat.left, eat.top, eat.right, eat.bottom, 20, 20);
-			 break;
-		     case brickPaint:
-		         SelectObject(hdc, hBrush_blue);
-			 RoundRect(hdc, brick.left, brick.top, brick.right, brick.bottom, 40, 40);
-			 break;
-		     case lastPaint:
-			 SelectObject(hdc, hBrush_back);
-			 RoundRect(hdc, eat.left, eat.top, eat.right, eat.bottom, 20, 20);
-			 break;
+	    case WM_PAINT:
+	        hdc = BeginPaint(hWnd, &ps);
+		switch (paintType) {
+		    case eatPaint:
+		        SelectObject(hdc, hBrush_red);
+		        RoundRect(hdc, eat.left, eat.top, eat.right, eat.bottom, 20, 20);
+		        break;
+		    case brickPaint:
+		        SelectObject(hdc, hBrush_blue);
+			RoundRect(hdc, brick.left, brick.top, brick.right, brick.bottom, 40, 40);
+			break;
+		    case lastPaint:
+			SelectObject(hdc, hBrush_back);
+			RoundRect(hdc, eat.left, eat.top, eat.right, eat.bottom, 20, 20);
+			break;
 		 }
 		 EndPaint(hWnd, &ps);
 		 break;
-	     case WM_DESTROY:
+	    case WM_DESTROY:
                  PostQuitMessage(NULL);
 		 break;
-	     default:
+	    default:
 	         return DefWindowProc(hWnd, uMsg, wParam, lParam);
 	}
 	return NULL;
