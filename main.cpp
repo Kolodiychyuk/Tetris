@@ -4,7 +4,7 @@
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM); // callback functions of the window
 
 // get screen metrics
-int width = GetSystemMetrics(SM_CXSCREEN),
+int width  = GetSystemMetrics(SM_CXSCREEN),
     height = GetSystemMetrics(SM_CYSCREEN);
 
 struct Shape {
@@ -49,7 +49,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	return msg.wParam;
 }
 
-HBRUSH hBrush_red = CreateSolidBrush(RGB(155, 1, 34)),
+HBRUSH hBrush_red  = CreateSolidBrush(RGB(155, 1, 34)),
        hBrush_blue = CreateSolidBrush(RGB(32, 79, 146)),
        hBrush_back = CreateSolidBrush(RGB(9, 12, 18));
 Shape brick((width / 2) - 110, height - 100, (width / 2) + 110, height - 50), eat(0, 0, 0, 0);
